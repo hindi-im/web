@@ -1,11 +1,13 @@
 <template>
   <q-page class="flex flex-center">
-    Indigeneous Video Calling Application built for India.
+    <p>
+      Welcome howdy {{ this.$auth.user().username }}
+    </p>
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'PageIndex'
+  name: 'AccountHome'
 }
 </script>

@@ -22,6 +22,18 @@ const routes = [
         component: () => import('pages/auth/account/Home')
       },
       {
+        path: '/create',
+        meta: { auth: false },
+        name: 'create',
+        component: () => import('pages/room/create')
+      },
+      {
+        path: '/join',
+        meta: { auth: true },
+        name: 'join',
+        component: () => import('pages/auth/account/Home')
+      },
+      {
         path: '/admin',
         meta: { auth: ['administrator'] },
         name: 'admin',
