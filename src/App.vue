@@ -8,10 +8,7 @@
 export default {
   name: 'App',
  preFetch ({ store }) {
-      store.commit('auth/setUserData', (data) => { 
-      console.log(data)
-      return { id: data.id } })
-
+    store.commit('auth/setUserData', data => data);
     /**
      * Login callbacks
      */
