@@ -81,8 +81,9 @@
 
 <script>
 import prompts from 'app/quasar.extensions.json'
-
+import { Notify } from 'quasar'
 import isEmail from 'validator/es/lib/isEmail'
+import { onLogin } from '../../vue-apollo'
 
 export default {
   name: 'Login',
@@ -133,18 +134,16 @@ export default {
         this.lang.auth = { ...lang.default.auth }
       }
     },
-    onSubmit () {
+    async onSubmit () {
       this.loading = true
-      this.$auth
-        .login(this.data)
-        .then(response => {
-          console.log('successful')
+      const that = this;
+      try {
+          const resp = await this.$auth.login(this.data);
+           Notify.create('Room created successfully, you will be redirected now');
           this.$router.push('/')
           this.$store.dispatch('auth/loginCallback')
-        })
-        .catch(error => {
-          console.log(error);
-          
+      } catch (error) {
+                  Notify.create('Incorrect username or password. Kindly try again.');
           if (error.response) {
             if (error.response.status === 401) {
               this.$q.dialog({
@@ -158,11 +157,24 @@ export default {
               console.error(error)
             }
           }
-        })
-        .finally(() => {
-          console.log('dfinaklkly')
-          this.loading = false
-        })
+      }
+
+          this.loading = false;
+            const apolloClient = this.$apollo.provider.defaultClient;
+            await onLogin(apolloClient, this.$auth.user())
+
+
+        // .then((response, data) => {
+
+        // })
+        // .catch(error => {
+        //   console.log(error);
+         
+        // })
+        // .finally(() => {
+        //   console.log('dfinaklkly')
+        //   this.loading = false
+        // })
     }
   }
 }

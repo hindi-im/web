@@ -8,7 +8,6 @@
         <q-btn dense flat round icon="menu" @click="right = !right" />
       </q-toolbar>
     </q-header>
-
     <!-- <q-drawer overlay elevated> -->
     <q-drawer
       v-model="right"
@@ -21,7 +20,7 @@
         style="height: calc(100% - 98px); margin-top: 98px; border-right: 1px solid #ddd"
       >
         <q-list padding>
-          <q-item clickable v-ripple to="login" v-if="!this.$auth.user()">
+          <q-item clickable v-ripple to="/login" v-if="!this.$auth.user()">
               <q-item-section avatar>
                 <q-icon name="account_circle" />
               </q-item-section>
@@ -29,7 +28,7 @@
                 Login
               </q-item-section>
             </q-item>
-             <q-item clickable v-ripple to="create" >
+             <q-item clickable v-ripple to="/create" v-if="this.$auth.user() && this.$auth.user().id">
               <q-item-section avatar>
                 <q-icon name="calendar_today" />
               </q-item-section>
@@ -37,7 +36,7 @@
                 Create a room
               </q-item-section>
             </q-item>
-            <q-item clickable v-ripple to="join" v-if="this.$auth.user() && this.$auth.user().id">
+            <q-item clickable v-ripple to="/join" v-if="this.$auth.user() && this.$auth.user().id">
               <q-item-section avatar>
                 <q-icon name="calendar_view_day" />
               </q-item-section>
@@ -45,7 +44,7 @@
                 Join a room
               </q-item-section>
             </q-item>
-            <q-item clickable v-ripple to="account" v-if="this.$auth.user() && this.$auth.user().id">
+            <q-item clickable v-ripple to="/account" v-if="this.$auth.user() && this.$auth.user().id">
               <q-item-section avatar>
                 <q-icon name="settings" />
               </q-item-section>

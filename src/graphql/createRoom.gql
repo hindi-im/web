@@ -1,0 +1,6 @@
+mutation insert_room ($password: String, $userID: Int!) {
+    insert_room(objects: [{members: [ $userID], password: $password, created_by: $userID
+    }]) {
+      affected_rows
+    }
+}

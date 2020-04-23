@@ -23,7 +23,7 @@ const routes = [
       },
       {
         path: '/create',
-        meta: { auth: false },
+        meta: { auth: true },
         name: 'create',
         component: () => import('pages/room/create')
       },
@@ -32,6 +32,12 @@ const routes = [
         meta: { auth: true },
         name: 'join',
         component: () => import('pages/auth/account/Home')
+      },
+      {
+        path: '/r/:id',
+        meta: { auth: true },
+        name: 'join',
+        component: () => import('pages/room/room')
       },
       {
         path: '/admin',
