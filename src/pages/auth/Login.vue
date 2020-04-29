@@ -139,11 +139,11 @@ export default {
       const that = this;
       try {
           const resp = await this.$auth.login(this.data);
-           Notify.create('Room created successfully, you will be redirected now');
+          Notify.create('Loggedin successfully, you will be redirected now');
           this.$router.push('/')
           this.$store.dispatch('auth/loginCallback')
       } catch (error) {
-                  Notify.create('Incorrect username or password. Kindly try again.');
+            Notify.create('Incorrect username or password. Kindly try again.');
           if (error.response) {
             if (error.response.status === 401) {
               this.$q.dialog({
@@ -158,7 +158,7 @@ export default {
             }
           }
       }
-
+          console.log(this.$auth.user());
           this.loading = false;
             const apolloClient = this.$apollo.provider.defaultClient;
             await onLogin(apolloClient, this.$auth.user())
