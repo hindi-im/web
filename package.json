@@ -23,7 +23,7 @@
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
     "quasar": "^1.0.0",
-    "validator": "^12.1.0",
+    "validator": "^13.7.0",
     "vue-apollo": "^3.0.3",
     "vue-cli-plugin-apollo": "^0.21.3",
     "vue-i18n": "^8.0.0"
